@@ -68,7 +68,10 @@ export const cartSlice = createSlice({
         changeCountByValueAction: (state, action) => { // takes array(2) [0 => cid , 1 => val]
 
             // get id of cart item
-            let cartItem = state.cart.find( (c) => c.id == action.payload[0] );
+            let cartItem = state.cart.find( (c) => {
+                if(c) return c.id == action.payload[0];
+                else return false;
+            });
 
             cartItem.count += action.payload[1];
 
